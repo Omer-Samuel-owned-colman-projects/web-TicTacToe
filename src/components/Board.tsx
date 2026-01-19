@@ -5,9 +5,10 @@ import { CellValue } from '../types'
 interface BoardProps {
   board: CellValue[]
   winningLine: number[]
+  onCellClick: (index: number) => void
 }
 
-const Board = ({ board, winningLine }: BoardProps) => {
+const Board = ({ board, winningLine, onCellClick }: BoardProps) => {
   return (
     <Grid
       container
@@ -20,7 +21,11 @@ const Board = ({ board, winningLine }: BoardProps) => {
         const isWinningCell: boolean = winningLine.includes(index)
         return (
           <Grid item xs={4} key={index}>
-            <Cell value={cell} isWinning={isWinningCell}/>
+            <Cell 
+              value={cell} 
+              isWinning={isWinningCell}
+              onClick={() => onCellClick(index)}
+            />
           </Grid>
         )
       })}
