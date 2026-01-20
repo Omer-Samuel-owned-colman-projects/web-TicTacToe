@@ -4,11 +4,13 @@ import { CellValue, CELL_COLORS } from '../types'
 interface CellProps {
   value: CellValue
   isWinning: boolean
+  onClick: () => void
 }
 
-const Cell = ({ value, isWinning }: CellProps) => {
+const Cell = ({ value, isWinning, onClick }: CellProps) => {
   return (
     <Paper
+      onClick={onClick}
       sx={{
         height: 100,
         display: 'flex',
@@ -18,6 +20,7 @@ const Cell = ({ value, isWinning }: CellProps) => {
         fontWeight: 'bold',
         bgcolor: isWinning ? CELL_COLORS.winning : CELL_COLORS.default,
         color: isWinning ? 'white' : 'black',
+        cursor: 'pointer'
       }}
     >
       {value || ''}
